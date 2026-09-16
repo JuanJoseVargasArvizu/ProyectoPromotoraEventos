@@ -1,4 +1,6 @@
 
+%% Checar metodo InventarioService/InventarioController - CambiarEstadoDeElemento
+%% No seguro de que deberia de enviar para establecer el estado por el que sera cambiado el elemento
 
 classDiagram
 
@@ -10,22 +12,24 @@ classDiagram
     InventarioController -- InventarioService
     InventarioServiceImp -- Inventario
     InventarioServiceImp -- InventarioRepository
+    InventarioRepository ..|> InventarioRepositoryImp : Implementa
 
     AgendaService ..|> AgendaServiceImp : Implementa
     AgendaController -- AgendaService
     AgendaServiceImp -- Agenda
     AgendaServiceImp -- AgendaRepository
+    AgendaRepository ..|> AgendaRepositoryImp : Implementa
 
 
 
     class InventarioService{
       <<Interfaz>>
-      + obtenerListaDeElementos(elementos : Elemento) ArrayList Elemento
-      + crearNuevoElemento(nuevoElemento : Elemento) void
-      + eliminarElemento(elementoEliminado : Elemento) void
-      + cambiarEstadoDeElemento(elementoCambiado : Elemento) void
-      + ReducirAlmacenDeElemento(elementoReducido : Elemento, cantidad : int) void
-      + AumentarAlmacenDeElemento(elementoAumentado : Elemento, cantidad : int) void
+      + obtenerListaDeElementos(elementos : ElementoInventario) ArrayList ElementoInventario
+      + crearNuevoElemento(nuevoElemento : ElementoInventario) void
+      + eliminarElemento(elementoEliminado : ElementoInventario) void
+      + cambiarEstadoDeElemento(elementoCambiado : ElementoInventario) void
+      + ReducirAlmacenDeElemento(elementoReducido : ElementoInventario, cantidad : int) void
+      + AumentarAlmacenDeElemento(elementoAumentado : ElementoInventario, cantidad : int) void
     
     }
 
@@ -46,10 +50,18 @@ classDiagram
 
 
     class InventarioController{
+      + AgregarElementoInventario(nuevoElemento : ElementoInventario) void
+      + EliminarElementoInventario(elementoEliminado : ElementoInventario) void
+      + ObtenerElementosDeInventario() ArrayList ElementoInventario
+      + CambiarEstadoDeElemento(elementoCambiado : ElementoInventario) void
+      + ReducirAlmacenDeElemento(reduccion : int) void
+      + AumentarAlmacenDeElemento(aumento : int) void
     }
 
     class AgendaController{
-
+      + ObtenerRentas() ArrayList Renta
+      + AgregarRenta(RentaNueva : Renta) void
+      + EliminarRenta(RentaEliminada : Renta) void
     }
 
     class ElementoInventario{
@@ -64,9 +76,9 @@ classDiagram
     }
 
     class Inventario{
-      - m_elementos : ArrayList Elemento
-      + AgregarElemento(nuevoElemento : Elemento) : void
-      + EliminarElemento(elementoEliminado : Elemento) : void
+      - m_elementos : ArrayList ElementoInventario
+      + AgregarElemento(nuevoElemento : ElementoInventario) : void
+      + EliminarElemento(elementoEliminado : ElementoInventario) : void
       + ObtenerElemento(index : int) : Elemento
       + Getters()
       + Setters()
@@ -74,7 +86,7 @@ classDiagram
 
     class Renta{
       - m_direccion : Direccion
-      - m_elementosRentados : ArrayList Elemento
+      - m_elementosRentados : ArrayList ElementoInventario
       - m_contacto : String
       - m_fecha : Date
       + Getters()
@@ -97,10 +109,18 @@ classDiagram
       + EncontrarPorID(AUN NO DECIDADA LA ID) : ElementoInventario
     }
 
+    class InventarioRepositoryImp{
+      
+    }
+
     class AgendaRepository{
       <<Interfaz>>
       + ObtenerRentas() ArrayList Renta
       + GuardarRenta(rentaParaGuardar : Renta) void
       + EliminarRenta(rentaParaEliminar : Renta) void
       + EncontrarPorID(AUN NO DECIDADA LA ID) : Renta
+    }
+
+    class AgendaRepositoryImp{
+
     }
