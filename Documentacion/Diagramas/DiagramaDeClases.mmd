@@ -1,126 +1,48 @@
-
-%% Checar metodo InventarioService/InventarioController - CambiarEstadoDeElemento
-%% No seguro de que deberia de enviar para establecer el estado por el que sera cambiado el elemento
-
 classDiagram
 
 
-    Inventario -- ElementoInventario
-    Agenda -- Renta
 
-    InventarioService ..|> InventarioServiceImp : Implementa
-    InventarioController -- InventarioService
-    InventarioServiceImp -- Inventario
-    InventarioServiceImp -- InventarioRepository
-    InventarioRepository ..|> InventarioRepositoryImp : Implementa
+class BienDeAlquiler{
+    - m_folio : int
+    - m_nombre : String
+    - m_precio : double
+    - m_cantidadEnAlmacen : int
+    + RestarAlmacen(cantidad : int) void
+    + AumentarAlmacen(cantidad : int) void
+}
 
-    AgendaService ..|> AgendaServiceImp : Implementa
-    AgendaController -- AgendaService
-    AgendaServiceImp -- Agenda
-    AgendaServiceImp -- AgendaRepository
-    AgendaRepository ..|> AgendaRepositoryImp : Implementa
+class CompraDeBienes{
+    - m_bienComprado : BienDeAlquiler
+    - m_cantidad : int
+    - m_costo : double
+    - m_fecha : Fecha
+}
 
+class ReportesNegocio{
+    - m_reportesInventario : ArrayList ReporteMensualInventario
+    - m_reportesRenta : ArrayList ReporteMensualRentas
+}
 
+class ReporteMensualInventario{
+    - m_mes : int
+    - m_año : int
+    - m_comprasDeBienes : ArrayList CompraDeBienes
+}
 
-    class InventarioService{
-      <<Interfaz>>
-      + obtenerListaDeElementos(elementos : ElementoInventario) ArrayList ElementoInventario
-      + crearNuevoElemento(nuevoElemento : ElementoInventario) void
-      + eliminarElemento(elementoEliminado : ElementoInventario) void
-      + cambiarEstadoDeElemento(elementoCambiado : ElementoInventario) void
-      + ReducirAlmacenDeElemento(elementoReducido : ElementoInventario, cantidad : int) void
-      + AumentarAlmacenDeElemento(elementoAumentado : ElementoInventario, cantidad : int) void
-    
-    }
+class ReporteMensualRentas{
+    - m_mes : int
+    - m_año : int
+    - m_rentas : ArrayList Renta
+}
 
-    class AgendaService{
-      <<Interfaz>>
-      + ObtenerRentas() ArrayList Renta
-      + AgregarRenta(RentaNueva : Renta) void
-      + EliminarRenta(RentaEliminada : Renta) void
-    }
+class Renta{
+    - m_bienesRentados : ArrayList BienDeAlquiler
+    - m_fecha : Fecha
+    - m_direccion : Direccion
+    - m_cliente : Cliente
+}
 
-    class InventarioServiceImp{
-      - final InventarioRespository inventarioRepository
-    }
-
-     class AgendaServiceImp{
-      - final AgendaServiceRepository agendaServiceRepository
-    }
-
-
-    class InventarioController{
-      + AgregarElementoInventario(nuevoElemento : ElementoInventario) void
-      + EliminarElementoInventario(elementoEliminado : ElementoInventario) void
-      + ObtenerElementosDeInventario() ArrayList ElementoInventario
-      + CambiarEstadoDeElemento(elementoCambiado : ElementoInventario) void
-      + ReducirAlmacenDeElemento(reduccion : int) void
-      + AumentarAlmacenDeElemento(aumento : int) void
-    }
-
-    class AgendaController{
-      + ObtenerRentas() ArrayList Renta
-      + AgregarRenta(RentaNueva : Renta) void
-      + EliminarRenta(RentaEliminada : Renta) void
-    }
-
-    class ElementoInventario{
-      - m_nombre : String
-      - m_categoria : enum
-      - m_cantidad : int
-      
-      + ReducirAlmacen(reduccion : int) void
-      + AumentarAlmacen( aumento : int) void
-      + Getters()
-      + Setters()
-    }
-
-    class Inventario{
-      - m_elementos : ArrayList ElementoInventario
-      + AgregarElemento(nuevoElemento : ElementoInventario) : void
-      + EliminarElemento(elementoEliminado : ElementoInventario) : void
-      + ObtenerElemento(index : int) : Elemento
-      + Getters()
-      + Setters()
-    }
-
-    class Renta{
-      - m_direccion : Direccion
-      - m_elementosRentados : ArrayList ElementoInventario
-      - m_contacto : String
-      - m_fecha : Date
-      + Getters()
-      + Setters()
-    }
-
-    class Agenda{
-      - m_rentas : ArrayList Renta
-      + AgregarRecordatorio(rentaNueva : Renta) void
-      + EliminarRecordatorio(rentaEliminada : Renta) void
-            + Getters()
-      + Setters()
-    }
-
-    class InventarioRepository{
-      <<Interfaz>>
-      + ObtenerElementos() ArrayList ElementoInventario
-      + GuardarElemento(elementoParaGuardar : ElementoInventario) void
-      + EliminarElemento(elementoParaEliminar : ElementoInventario) void
-      + EncontrarPorID(AUN NO DECIDADA LA ID) : ElementoInventario
-    }
-
-    class InventarioRepositoryImp{
-      
-    }
-
-    class AgendaRepository{
-      <<Interfaz>>
-      + ObtenerRentas() ArrayList Renta
-      + GuardarRenta(rentaParaGuardar : Renta) void
-      + EliminarRenta(rentaParaEliminar : Renta) void
-      + EncontrarPorID(AUN NO DECIDADA LA ID) : Renta
-    }
-
-    class AgendaRepositoryImp{
-
-    }
+class Cliente{
+    - m_nombre : String
+    - m_contacto : Telf
+}
