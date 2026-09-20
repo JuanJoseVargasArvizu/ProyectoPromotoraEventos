@@ -1,5 +1,16 @@
 classDiagram
 
+BienDeAlquiler -- ReporteInventario
+BienDeAlquiler -- CompraDeBienes
+BienDeAlquiler -- Renta
+Renta -- ReporteRentas
+Renta -- Cliente
+Renta -- Fecha
+Renta -- Direccion
+ReporteInventario -- CompraDeBienes
+ReporteMensualNegocio -- ReporteInventario
+ReporteMensualNegocio -- ReporteRentas
+ReporteMensualNegocio -- Fecha
 
 
 class BienDeAlquiler{
@@ -7,6 +18,10 @@ class BienDeAlquiler{
     - m_nombre : String
     - m_precio : double
     - m_cantidadEnAlmacen : int
+    + ObtenerFolio() int
+    + ObtenerNombre() String
+    + ObtenerPrecio() double
+    + ObtenerCantidadAlmacen() int
     + RestarAlmacen(cantidad : int) void
     + AumentarAlmacen(cantidad : int) void
 }
@@ -16,23 +31,33 @@ class CompraDeBienes{
     - m_cantidad : int
     - m_costo : double
     - m_fecha : Fecha
+    + ObtenerFecha() Fecha
+    + ObtenerBienComprado() BienDeAlquiler 
+    + ObtenerCantidad() int
+    + ObtenerCosto() double
 }
 
-class ReportesNegocio{
-    - m_reportesInventario : ArrayList ReporteMensualInventario
-    - m_reportesRenta : ArrayList ReporteMensualRentas
+class ReporteMensualNegocio{
+    - m_fecha : Fecha
+    - m_reporteInventario : ReporteInventario
+    - m_reporteRentas : ReporteRentas
+    + ObtenerFecha() Fecha
+    + ObtenerReporteInventario() ReporteInventario
+    + ObtenerReporteRentas() ArrayList ReporteRentas
 }
 
-class ReporteMensualInventario{
-    - m_mes : int
-    - m_año : int
+class ReporteInventario{
     - m_comprasDeBienes : ArrayList CompraDeBienes
+    - m_estadoInventario : ArrayList BienDeAlquiler
+    + ObtenerEstado() ArrayList BienDeAlquiler
+    + ObtenerCompras() ArrayList CompraDeBienes
+    + ObtenerPDF() PDF
+    - ConvertirAPDF(compras : ArrayList CompraDeBienes, estado : ArrayList BienDeAlquiler) PDF
 }
 
-class ReporteMensualRentas{
-    - m_mes : int
-    - m_año : int
+class ReporteRentas{
     - m_rentas : ArrayList Renta
+    + ObtenerRentas() ArrayList Renta
 }
 
 class Renta{
@@ -40,9 +65,39 @@ class Renta{
     - m_fecha : Fecha
     - m_direccion : Direccion
     - m_cliente : Cliente
+    + ObtenerBienesRentados() ArrayList BienDeAlquiler
+    + ObtenerFecha() Fecha
+    + ObtenerDireccion() Direccion
+    + ObtenerCliente() Cliente
 }
 
 class Cliente{
     - m_nombre : String
     - m_contacto : Telf
+    + ObtenerNombre() String
+    + ObtenerContacto() Telf
+}
+
+class Fecha{
+    - m_dia : int
+    - m_mes : int
+    - m_año : int
+    + ObtenerDia() int
+    + ObtenerMes() int
+    + ObtenerAño() int
+}
+
+class Direccion{
+    - m_calle : String
+    - m_colonia : String
+    - m_numeroInterio : int
+    - m_numeroExterior: int
+    - m_codigoPostal : int
+    - m_referencias : String
+    + ObtenerCalle() String
+    + ObtenerColonio() String
+    + ObtenerNumeroExterior() int
+    + ObtenerNumeroInterior() int
+    + ObtenerCodigoPostal() int
+    + ObtenerReferencias() String
 }
