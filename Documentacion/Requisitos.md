@@ -17,9 +17,9 @@ El sistema debe permitir asignar a cada pieza física un identificador único (e
 ### **RF-05 (M) — Cambiar estado.** 
 El sistema debe permitir asignar a un elemento uno de los estados: Disponible, Rentado, En mantenimiento, Dañado. Reglas: solo el administrador puede asignar En mantenimiento o Dañado; un elemento Rentado, no puede cambiar a Disponible hasta que su renta se marque como finalizada (RF-10); un elemento En mantenimiento o Dañado no puede agregarse a una renta.
 &nbsp;
+
 ## Módulo: Rentas
 &nbsp;
-
 ### **RF-06 (M) — Crear renta.** 
 El sistema debe permitir registrar una renta con: nombre del cliente, contacto (teléfono), fecha y hora de inicio, paquete de tiempo, dirección del evento y lista de elementos solicitados (con cantidad de cada uno).
 &nbsp;
@@ -41,9 +41,9 @@ Al agregar un elemento frecuente a una renta (ej. mesa de DJ), el sistema debe s
 ### **RF-12 (S) — Estado de renta visible para el equipo.** 
 Los trabajadores asignados a una renta deben ver sus pendientes del día (qué montar, a qué hora, dónde), idealmente desde el celular en el sitio del evento.
 &nbsp;
+
 ## Módulo: Agenda
 &nbsp;
-
 ### **RF-13 (M) — Visualizar agenda.** 
 El sistema debe mostrar las rentas en formato de calendario y de lista, con fecha, cliente, dirección y estado (Pendiente, Activa, Finalizada, Cancelada).
 &nbsp;
@@ -55,18 +55,20 @@ El sistema debe mostrar, al iniciar sesión, las rentas de los próximos 2 días
 
 # Requerimientos no funcionales
 
-**RNF-01 — Rendimiento.** 
+### **RNF-01 — Rendimiento.** 
 El sistema debe mostrar la lista del inventario y la agenda en menos de 2 segundos con hasta 500 elementos y 200 rentas registradas y 5 usuarios trabajando simultáneamente.
 &nbsp;
-**RNF-02 — Usabilidad.** 
+### **RNF-02 — Usabilidad.** 
 Una persona sin conocimientos técnicos debe poder registrar una renta completa en menos de 5 minutos después de una capacitación de 1 hora.
 &nbsp;
-**RNF-03 — Respaldo.** 
+### **RNF-03 — Respaldo.** 
 El sistema debe generar una copia de seguridad automática de la base de datos cada 24 horas, con opción de restauración. (Crítico: hoy todo está en papel y en la memoria de una sola persona.)
 &nbsp;
-**RNF-04 — Seguridad.** 
+### **RNF-04 — Seguridad.** 
 El sistema debe requerir inicio de sesión con usuario y contraseña individual por cada trabajador de la empresa. Cada usuario tiene asignado un rol, como el administrador que al ser el dueño de la empresa tiene el acceso total o elEmpleado (consultar inventario/agenda, registrar y editar rentas, registrar daños). Solo el Administrador podría modificar los precios, agregar/eliminar elementos del inventario y confirmar recargos por daño.
 &nbsp;
-**RNF-06 — Compatibilidad.** El sistema debe funcionar en las versiones recientes de Chrome, Edge y Safari sin instalación adicional (aplicación web).
+### **RNF-06 — Compatibilidad.** 
+El sistema debe funcionar en las versiones recientes de Chrome, Edge y Safari sin instalación adicional (aplicación web).
 &nbsp;
-**RNF-07 — Integridad.** El sistema debe impedir que dos rentas confirmadas compitan por los mismos elementos en fechas traslapadas (concurrencia controlada).
+### **RNF-07 — Integridad.** 
+El sistema debe impedir que dos rentas confirmadas compitan por los mismos elementos en fechas traslapadas (concurrencia controlada).
