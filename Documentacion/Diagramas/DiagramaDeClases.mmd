@@ -44,6 +44,9 @@ class ReporteMensualNegocio{
     + ObtenerFecha() Fecha
     + ObtenerReporteInventario() ReporteInventario
     + ObtenerReporteRentas() ArrayList ReporteRentas
+    + ObtenerPDF() PDF
+    - ConvertirAPDF() PDF
+
 }
 
 class ReporteInventario{
@@ -51,8 +54,6 @@ class ReporteInventario{
     - m_estadoInventario : ArrayList BienDeAlquiler
     + ObtenerEstado() ArrayList BienDeAlquiler
     + ObtenerCompras() ArrayList CompraDeBienes
-    + ObtenerPDF() PDF
-    - ConvertirAPDF(compras : ArrayList CompraDeBienes, estado : ArrayList BienDeAlquiler) PDF
 }
 
 class ReporteRentas{
