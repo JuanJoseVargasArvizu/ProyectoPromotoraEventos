@@ -66,6 +66,7 @@ El sistema debe generar una copia de seguridad automática de la base de datos c
 &nbsp;
 ### **RNF-04 — Seguridad.** 
 El sistema debe requerir inicio de sesión con usuario y contraseña individual por cada trabajador de la empresa. Cada usuario tiene asignado un rol, como el administrador que al ser el dueño de la empresa tiene el acceso total o elEmpleado (consultar inventario/agenda, registrar y editar rentas, registrar daños). Solo el Administrador podría modificar los precios, agregar/eliminar elementos del inventario y confirmar recargos por daño.
+<mark style="background:#fff88f">Por que sería importante? si todos entran con la misma cuenta, el sistema no te dice quién hizo qué cosa y volvemos al problema original de "falta de comunicación y errores sin responsable".</mark>
 &nbsp;
 ### **RNF-06 — Compatibilidad.** 
 El sistema debe funcionar en las versiones recientes de Chrome, Edge y Safari sin instalación adicional (aplicación web).
