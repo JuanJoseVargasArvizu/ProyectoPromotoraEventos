@@ -1,34 +1,25 @@
-# Requisitos Funcionales
+# Requerimientos Funcionales
 ## Inventario
-### RF - : Presenta en forma de lista los elementos del inventario
-Se presenta el inventario del negocio en forma de tabla, donde cada fila debe ser un elemento del inventario. Las columnas de la tabla deben ser las sigueintes:
-- Producto
-- Categoria
-- Cantidad
+&nbsp;
+
+### **RF-01 (M) — Consultar inventario.** 
+El sistema debe mostrar el inventario como tabla con las columnas: ID, nombre, categoría, cantidad en almacén, cantidad disponible (no rentada ni en mantenimiento) y estado. Las categorías deben ser: Mobiliario (sillas, mesas), Luz y sonido (DJ, bocinas, micrófonos, consola, luces) y Climatización (coolers/ventiladores). Los elementos con cantidad 0 deben mostrarse con un indicador visual de "agotado".
 
 &nbsp;
 
-### RF - : Permite cambiar las cantidades en almacen de un elemento
-Se permite elegir un elemento de la lista y seleccionar un valor entero para substraerlo o a la cantidad en inventario de ese elemento
+### **RF-02 (M) — Registrar elemento.** 
+El sistema debe permitir agregar un nuevo elemento solicitando: nombre, categoría (de la lista del RF-01), cantidad inicial (entero ≥ 0) y precio por paquete de tiempo. El sistema debe rechazar nombres duplicados en la misma categoría y mostrar mensaje de error.
 
 &nbsp;
 
-### RF - : Permite agregar elementos a la lista
-Se permite agregar un nuevo elemento a la lista, pidiendo la siguiente informacion:
-- Nombre del elemento
-- Categoria del elemento
-- Cantidad en almacen a agregar al inventario
+### **RF-03 (M) — Ajustar cantidades.** 
+El sistema debe permitir aumentar o disminuir la cantidad en almacén de un elemento ingresando un número entero. El sistema debe rechazar cualquier operación que deje la cantidad menor a 0 y registrar cada cambio con fecha, cantidad anterior, cantidad nueva y motivo.
+ 
 
 &nbsp;
 
-### RF - : Permite cambiar el estado de grupos de elementos
-Permite seleccionar un grupo de elementos de la lista del inventario, y otorgarles un estado distinto  
-
-&nbsp;
-
-## Agenda/Calendario
-### RF - : La agenda permite visualizar las rentas en forma de un calendario o lista
-La agenda obtiene las rentas desde el gestor y las muestra en forma de calendario o lista
+### **RF-04 (S) — Identificador por pieza.** 
+El sistema debe permitir asignar a cada pieza física un identificador único (ej. una serie), de modo que dos coolers "iguales" sean distinguibles entre sí, y llevar el historial individual de cada pieza (rentas, daños, mantenimientos).
 
 &nbsp;
 
