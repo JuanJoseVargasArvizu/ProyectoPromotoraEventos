@@ -11,6 +11,7 @@ ReporteInventario -- CompraDeBienes
 ReporteMensualNegocio -- ReporteInventario
 ReporteMensualNegocio -- ReporteRentas
 ReporteMensualNegocio -- Fecha
+Usuario <-- Administador :Hereda
 
 
 class BienDeAlquiler{
@@ -116,4 +117,14 @@ class Usuario {
     - m_rol : String
     + IniciarSesion() bool
     + CerrarSesion() void
+    + ConsultarInventario() ArrayList BienDeAlquiler
+    + ConsultarAgenda() ArrayList Rentas
+    + CrearRenta(rentaNueva : Renta) void
+    + EditarRenta(renta : Renta) void
+}
+
+class Administrador {
+    + AgregarBienDeAlquiler(nuevoBien : BienDeAlquiler) void
+    + EliminarBienDeAlquiler(bienEliminado : BienDeAlquiler) void
+    + EditarBienDeAlquiler(bienEditado : BienDeAlquiler) void
 }
