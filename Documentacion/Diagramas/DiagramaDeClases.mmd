@@ -14,14 +14,21 @@ ReporteMensualNegocio -- Fecha
 
 
 class BienDeAlquiler{
-    - m_folio : int
+    - m_folio : int   
     - m_nombre : String
+    - m_categoria : String
     - m_precio : double
-    - m_cantidadEnAlmacen : int
+    - m_cantidadDisponible : int
+    - m_cantidadEnMantenimiento : int
+    - m_cantidadRentada : int
+
     + ObtenerFolio() int
     + ObtenerNombre() String
     + ObtenerPrecio() double
-    + ObtenerCantidadAlmacen() int
+    + ObtenerCategoria() String
+    + ObtenerCantidadDisponible() int
+    + ObtenerCantidadEnMantenimiento() int
+    + ObtenerCantidadRentada() int
     + RestarAlmacen(cantidad : int) void
     + AumentarAlmacen(cantidad : int) void
 }
