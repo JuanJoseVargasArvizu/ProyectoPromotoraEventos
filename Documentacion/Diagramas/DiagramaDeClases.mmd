@@ -11,17 +11,25 @@ ReporteInventario -- CompraDeBienes
 ReporteMensualNegocio -- ReporteInventario
 ReporteMensualNegocio -- ReporteRentas
 ReporteMensualNegocio -- Fecha
+Usuario <-- Administrador :Hereda
 
 
 class BienDeAlquiler{
-    - m_folio : int
+    - m_folio : int   
     - m_nombre : String
+    - m_categoria : String
     - m_precio : double
-    - m_cantidadEnAlmacen : int
+    - m_cantidadDisponible : int
+    - m_cantidadEnMantenimiento : int
+    - m_cantidadRentada : int
+
     + ObtenerFolio() int
     + ObtenerNombre() String
     + ObtenerPrecio() double
-    + ObtenerCantidadAlmacen() int
+    + ObtenerCategoria() String
+    + ObtenerCantidadDisponible() int
+    + ObtenerCantidadEnMantenimiento() int
+    + ObtenerCantidadRentada() int
     + RestarAlmacen(cantidad : int) void
     + AumentarAlmacen(cantidad : int) void
 }
@@ -109,4 +117,14 @@ class Usuario {
     - m_rol : String
     + IniciarSesion() bool
     + CerrarSesion() void
+    + ConsultarInventario() ArrayList BienDeAlquiler
+    + ConsultarAgenda() ArrayList Rentas
+    + CrearRenta(rentaNueva : Renta) void
+    + EditarRenta(renta : Renta) void
+}
+
+class Administrador {
+    + AgregarBienDeAlquiler(nuevoBien : BienDeAlquiler) void
+    + EliminarBienDeAlquiler(bienEliminado : BienDeAlquiler) void
+    + EditarBienDeAlquiler(bienEditado : BienDeAlquiler) void
 }
