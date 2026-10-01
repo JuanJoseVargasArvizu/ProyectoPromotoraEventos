@@ -3,13 +3,13 @@
 &nbsp;
 
 ### **RF-01 (M) — Consultar inventario.** 
-El sistema debe mostrar el inventario como tabla con las columnas: ID, nombre, categoría, cantidad en almacén, cantidad disponible (no rentada ni en mantenimiento) y estado. Las categorías deben ser: Mobiliario (sillas, mesas), Luz y sonido (DJ, bocinas, micrófonos, consola, luces) y Climatización (coolers/ventiladores). Los elementos con cantidad 0 deben mostrarse con un indicador visual de "agotado".
+El sistema debe mostrar el inventario como tabla con las columnas: ID, nombre, categoría, cantidad en almacén, cantidad disponible y estado. Las categorías deben ser: Mobiliario (sillas, mesas), Luz y sonido (DJ, bocinas, micrófonos, consola, luces) y Climatización (coolers/ventiladores). Los elementos sin cantidad se deben mostrar con un indicador de "agotado".
 &nbsp;
 ### **RF-02 (M) — Registrar elemento.** 
-El sistema debe permitir agregar un nuevo elemento solicitando: nombre, categoría (de la lista del RF-01), cantidad inicial (entero ≥ 0) y precio por paquete de tiempo. El sistema debe rechazar nombres duplicados en la misma categoría y mostrar mensaje de error.
+El sistema debe permitir agregar un nuevo elemento solicitando: nombre, categoría (de la lista del RF-01), cantidad inicial y precio. El sistema debe rechazar nombres duplicados en la misma categoría y mostrar un mensaje de error.
 &nbsp;
 ### **RF-03 (M) — Ajustar cantidades.** 
-El sistema debe permitir aumentar o disminuir la cantidad en almacén de un elemento ingresando un número entero. El sistema debe rechazar cualquier operación que deje la cantidad menor a 0 y registrar cada cambio con fecha, cantidad anterior, cantidad nueva y motivo.
+El sistema debe permitir aumentar o disminuir la cantidad en almacén de un elemento ingresando un número. El sistema debe rechazar cualquier operación que deje la cantidad menor a 0 y registrar cada cambio con fecha, cantidad anterior, cantidad nueva y motivo.
 &nbsp;
 ### **RF-04 (S) — Identificador por pieza.** 
 El sistema debe permitir asignar a cada pieza física un identificador único (ej. una serie), de modo que dos coolers "iguales" sean distinguibles entre sí, y llevar el historial individual de cada pieza (rentas, daños, mantenimientos).
@@ -21,7 +21,7 @@ El sistema debe permitir asignar a un elemento uno de los estados: Disponible, R
 ## Módulo: Rentas
 &nbsp;
 ### **RF-06 (M) — Crear renta.** 
-El sistema debe permitir registrar una renta con: nombre del cliente, contacto (teléfono), fecha y hora de inicio, paquete de tiempo, dirección del evento y lista de elementos solicitados (con cantidad de cada uno).
+El sistema debe permitir registrar una renta con: nombre del cliente, contacto (teléfono), fecha, dirección del evento y lista de elementos solicitados (con cantidad de cada uno).
 &nbsp;
 ### **RF-07 (M) — Verificar disponibilidad.** 
 Antes de confirmar una renta, el sistema debe verificar automáticamente que cada elemento solicitado tenga cantidad suficiente disponible en el rango de fecha/hora solicitado (ni rentado, ni en mantenimiento, ni dañado). Si algún elemento no está disponible, el sistema debe indicar exactamente cuál y en qué cantidad falta, y permitir modificar la renta antes de confirmar, al trabajar con un equipo de trabajo debe verificar la disponibilidad en tiempo real para todos los usuarios, de modo que dos trabajadores no puedan apartar los mismos elementos. Si dos usuarios intentan confirmar rentas que compiten por el mismo inventario, el sistema debe bloquear la segunda renta y notificar el conflicto.
