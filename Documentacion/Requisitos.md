@@ -1,75 +1,33 @@
-# Requerimientos Funcionales
-## Módulo inventario
-&nbsp;
+# Requerimientos del Proyecto
 
-### **RF-01 (M) — Consultar inventario.** 
-El sistema debe mostrar el inventario como tabla con las columnas: ID, nombre, categoría, cantidad en almacén, cantidad disponible y estado. Las categorías deben ser: Mobiliario (sillas, mesas), Luz y sonido (DJ, bocinas, micrófonos, consola, luces) y Climatización (coolers/ventiladores). Los elementos sin cantidad se deben mostrar con un indicador de "agotado".
-&nbsp;
-### **RF-02 (M) — Registrar elemento.** 
-El sistema debe permitir agregar un nuevo elemento solicitando: nombre, categoría (de la lista del RF-01), cantidad inicial y precio. El sistema debe rechazar nombres duplicados en la misma categoría y mostrar un mensaje de error.
-&nbsp;
-### **RF-03 (M) — Ajustar cantidades.** 
-El sistema debe permitir aumentar o disminuir la cantidad en almacén de un elemento ingresando un número. El sistema debe rechazar cualquier operación que deje la cantidad menor a 0 y registrar cada cambio con fecha, cantidad anterior, cantidad nueva y motivo.
-&nbsp;
-### **RF-04 (S) — Identificador por pieza.** 
-El sistema debe permitir asignar a cada pieza física un identificador único (ej. una serie), de modo que dos coolers "iguales" sean distinguibles entre sí, y llevar el historial individual de cada pieza (rentas, daños, mantenimientos).
-&nbsp;
-### **RF-05 (M) — Cambiar estado.** 
-El sistema debe permitir asignar a un elemento uno de los estados: Disponible, Rentado, En mantenimiento, Dañado. Reglas: solo el administrador puede asignar En mantenimiento o Dañado; un elemento Rentado, no puede cambiar a Disponible hasta que su renta se marque como finalizada (RF-10); un elemento En mantenimiento o Dañado no puede agregarse a una renta.
-&nbsp;
+## Requisitos Funcionales
 
-## Módulo: Rentas
-&nbsp;
-### **RF-06 (M) — Crear renta.** 
-El sistema debe permitir registrar una renta con: nombre del cliente, contacto (teléfono), fecha, dirección del evento y lista de elementos solicitados (con cantidad de cada uno).
-&nbsp;
-### **RF-07 (M) — Verificar disponibilidad.** 
-Antes de confirmar una renta, el sistema debe verificar automáticamente que cada elemento solicitado tenga cantidad suficiente disponible en el rango de fecha/hora solicitado (ni rentado, ni en mantenimiento, ni dañado). Si algún elemento no está disponible, el sistema debe indicar exactamente cuál y en qué cantidad falta, y permitir modificar la renta antes de confirmar, al trabajar con un equipo de trabajo debe verificar la disponibilidad en tiempo real para todos los usuarios, de modo que dos trabajadores no puedan apartar los mismos elementos. Si dos usuarios intentan confirmar rentas que compiten por el mismo inventario, el sistema debe bloquear la segunda renta y notificar el conflicto.
-&nbsp;
-### **RF-08 (M) — Confirmar renta.** 
-Al confirmar, el sistema debe cambiar los elementos a estado rentado para el período solicitado y crear un registro visible en la agenda.
-&nbsp;
-### **RF-09 (M) — Editar renta.** 
-El sistema debe permitir modificar los datos o elementos de una renta no finalizada, aplicando de nuevo la verificación de disponibilidad (RF-07) y actualizando la agenda.
-&nbsp;
-### **RF-10 (M) — Finalizar renta.** 
-Al finalizar una renta, el sistema debe registrar la condición en que regresó cada elemento (en buen estado o dañado), liberar los elementos (estado Disponible o En mantenimiento según corresponda) y pedir el tiempo real de montaje/desmontaje para compararlo con el estimado.
-&nbsp;
-### **RF-11 (S) — Sugerir combinaciones.** 
-Al agregar un elemento frecuente a una renta (ej. mesa de DJ), el sistema debe sugerir los elementos que comúnmente se rentan con él (bocinas, micrófonos, consola), sin imponerlos como paquete fijo.
-&nbsp;
-### **RF-12 (S) — Estado de renta visible para el equipo.** 
-Los trabajadores asignados a una renta deben ver sus pendientes del día (qué montar, a qué hora, dónde), idealmente desde el celular en el sitio del evento.
-&nbsp;
+| Requerimiento | Descripción | Tipo priorización |
+| :--- | :--- | :--- |
+| **RF01- Menú de inicio** | El sistema deberá mostrar en el menú de inicio el logo y nombre de la empresa y debajo botones con los siguientes apartados: Inventario, Rentas, Agenda y una leyenda de texto dándole la bienvenida al usuario en el centro. | Alta |
+| **RF02- Iniciar sesión** | El sistema debe permitir al usuario ingresar al sistema luego de ingresar el nombre del usuario y contraseña. | Alta |
+| **RF03- Gestionar inventario** | El sistema deberá mostrar un menú con opciones para la gestión de productos. | Alta |
+| **RF03.1- Registro de elementos** | El sistema deberá permitir al usuario registrar un elemento, solicitando categoría, nombre del producto, folio, cantidad e imagen. | Alta |
+| **RF03.2- Ajuste de elemento** | El sistema deberá permitir modificar la cantidad de elementos del inventario, incrementando o disminuyendo el número de elementos. Cada cambio a esta modificación debe ser mayor o igual a 0, de lo contrario mostrar un mensaje de error. | Alta |
+| **RF03.3- Modificación de inventario** | El sistema deberá permitir al usuario modificar las características de los elementos. | Alta |
+| **RF04- Módulo de agendas** | El sistema deberá mostrar un menú desplegado con opciones de agregar evento, la cantidad de eventos programados, los equipos en uso y una lista interactiva con posibilidad de modificación de los eventos disponibles. | Alta |
+| **RF04.1- Visualización de calendario** | El sistema deberá mostrar un apartado de visualización de calendario en el que al dar clic en un día muestre el nombre del evento. | Media |
+| **RF04.2- Impresión en PDF** | El sistema deberá permitir la impresión de la información en formato PDF. | Media |
+| **RF05- Sistema de rentas** | El sistema deberá mostrar un menú con opciones de agregar una nueva renta. | Alta |
+| **RF05.1- Agregar una renta** | El sistema deberá permitir agregar una nueva renta solicitando: nombre del evento, lugar del evento, fecha, lista de equipos con cantidad, hora del evento, hora de montaje y hora de desmontaje. | Alta |
+| **RF05.2- Verificación de disponibilidad del equipo** | Antes de confirmar una renta el sistema deberá verificar que el equipo no se encuentre dañado o falte cantidad, y deberá mostrar una notificación con el correspondiente inconveniente. | Alta |
+| **RF05.3- Modificación de la renta** | El sistema deberá permitir la modificación de la renta en dado caso que el cliente lo solicite, actualizando los datos en todo el sistema. | Alta |
+| **RF05.4- Traslape de rentas** | Si dos usuarios intentan confirmar una renta al mismo tiempo, el sistema deberá bloquear la segunda renta y permitir la primera. | Alta |
+| **RF06- Sistema de reportes** | El sistema deberá mostrar un menú dedicado a los reportes de daños del equipo, permitiendo registrar el daño, modificarlo y cambiarlo de estado para su uso. | Alta |
+| **RF06.1- Agregar un nuevo reporte** | El sistema debe permitir agregar un nuevo reporte, especificando el tipo de daño, prioridad, descripción de la incidencia y ubicación. | Alta |
 
-## Módulo: Agenda
-&nbsp;
-### **RF-13 (M) — Visualizar agenda.** 
-El sistema debe mostrar las rentas en formato de calendario y de lista, con fecha, cliente, dirección y estado (Pendiente, Activa, Finalizada, Cancelada).
-&nbsp;
-### **RF-14 (M) — Detalle desde la agenda.** 
-El sistema debe permitir abrir cualquier renta desde la agenda para ver y editar (RF-09) sus datos y elementos.
-&nbsp;
-### ****RF-15 (S) — Recordatorios.** 
-El sistema debe mostrar, al iniciar sesión, las rentas de los próximos 2 días con su detalle, y permitir anotar recordatorios internos (ej. hora de llegada del personal, vehículo asignado).
+---
 
-# Requerimientos no funcionales
+## Requisitos No Funcionales
 
-### **RNF-01 — Rendimiento.** 
-El sistema debe mostrar la lista del inventario y la agenda en menos de 2 segundos con hasta 500 elementos y 200 rentas registradas y 5 usuarios trabajando simultáneamente.
-&nbsp;
-### **RNF-02 — Usabilidad.** 
-Una persona sin conocimientos técnicos debe poder registrar una renta completa en menos de 5 minutos después de una capacitación de 1 hora.
-&nbsp;
-### **RNF-03 — Respaldo.** 
-El sistema debe generar una copia de seguridad automática de la base de datos cada 24 horas, con opción de restauración. (Crítico: hoy todo está en papel y en la memoria de una sola persona.)
-&nbsp;
-### **RNF-04 — Seguridad.** 
-El sistema debe requerir inicio de sesión con usuario y contraseña individual por cada trabajador de la empresa. Cada usuario tiene asignado un rol, como el administrador que al ser el dueño de la empresa tiene el acceso total o elEmpleado (consultar inventario/agenda, registrar y editar rentas, registrar daños). Solo el Administrador podría modificar los precios, agregar/eliminar elementos del inventario y confirmar recargos por daño.
-<mark style="background:#fff88f">Por que sería importante? si todos entran con la misma cuenta, el sistema no te dice quién hizo qué cosa y volvemos al problema original de "falta de comunicación y errores sin responsable".</mark>
-&nbsp;
-### **RNF-06 — Compatibilidad.** 
-El sistema debe funcionar en las versiones recientes de Chrome, Edge y Safari sin instalación adicional (aplicación web).
-&nbsp;
-### **RNF-07 — Integridad.** 
-El sistema debe impedir que dos rentas confirmadas compitan por los mismos elementos en fechas traslapadas (concurrencia controlada).
+| Requerimiento | Descripción |
+| :--- | :--- |
+| **RNF01- Usabilidad** | El sistema deberá ser fácil de usar, con interfaces simples e intuitivas, con un diseño adaptable y *responsive* para dispositivos móviles. |
+| **RNF02- Disponibilidad del sistema** | El sistema deberá mantener una disponibilidad constante de aproximadamente 99.9%, garantizando que los usuarios no tengan que registrar manualmente por fallos del sistema. |
+| **RNF03- Compatibilidad** | El sistema deberá funcionar en todos los navegadores web y dispositivos móviles. |
+| **RNF04- Gestión de permisos** | Los permisos de acceso al sistema podrán ser cambiados únicamente por el usuario administrador. |
