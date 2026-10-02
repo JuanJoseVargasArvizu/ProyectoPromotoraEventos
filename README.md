@@ -1,20 +1,46 @@
-# Sistema de inventario y agenda de rentas
-## Logica del negocio
-### Renta
-La empresa no maneja paquetes rígidos obligatorios, los articulos se agregan uno a uno según la necesidad del cliente. Sin embargo, la empresa cuenta con ciertas combinaciones frecuentes, ejemplo: la petición de mesa de DJ, generalmente suele incluir mesa, un par de bocinas, micrófonos, consola y el operador o DJ. Los precios están fijados por bloques de tiempos (Por horas o por días) 
+<div align="center">
 
-No existe un sistema de reserva o aparto de equipos, estan rentados o no lo estan, pero el dia y hora de entrega no necesariamente es inmediato
+  <img src="assets/LogoEmpresa" alt="Logo de la Empresa" width="180"/>
 
-### Gestion de inventario
-La clasificación es coolers (ventiladores), luz y sonido (dj, música, luces) y mobiliario (sillas y mesas). Ciertos productos se manejan por conteo (sillas, mesas, luces sencillas), variando únicamente el tipo y modelo, otros productos requieren atención en desgaste o maltrato por parte del cliente
+# Propuesta de Solución Tecnológica para [Promotora+Eventos]
 
-### Sobre los roles de el personal
-Esta se trata de una empresa bastante pequeña, y con alrededor de 5 empleados. Todo el personal participa en la tarea de transporte y montaje de el equipo rentado para los clientes, de la misma forma se apoyan entre si para recordar a base de memoria, lo que se encuentra disponible en el inventario.
+  *Asignatura: Construcción de Software | Licenciatura en Ingeniería de Software*  
+  *Universidad Autónoma de Yucatán (UADY) - Facultad de Matemáticas*
+  ---
 
-Sin embargo, las rentas de los clientes suelen ser tomadas por un miembro especifico del personal, que luego las comunica al resto del equipo, por lo que todos dependen de que no se le olvide notificar de las nuevas rentas
+</div>
 
+## Descripción General
+Como equipo de trabajo de la asignatura construcción de software, se colaboró con la empresa Promotora+Eventos, a través de entrevistas y un constante contacto con el dueño de la empresa, tras un análisis exhaustivo del flujo de trabajo, se identificaron múltiples problemáticas relacionadas a una falta de comunicación y eficiencia operativa, debido a un proceso manual de gestión de las rentas e inventario, no existía un proceso automatizado que permitiera a los empleados subsanar estos procesos complejos que requieren atención
 
-# Solucion de Software: Sistema de inventario y Agenda de rentas
-Este software esta pensado para funcionar como una visualizacion de el inventario con el que cuenta la empresa en el momento, sirviendo como herramienta para tomar las rentas de los clientes y visualizarlas de forma comoda atravez de una agenda.
+## Objetivo del Proyecto
+Desarrollar e implementar una aplicación web simple e intuitiva que permita a los usuarios interactuar a través de módulos con el flujo de trabajo, automatizando los procesos manuales y tareas repetitivas para mejorar la productividad de la empresa y la comunicación entre los empleados y el dueño
 
-Para detalles sobre las funcionalidades de el sistema, leer los requisitos en la Documentacion del repositorio
+## 🏢 Lógica de Negocio
+Esta sección describe las reglas y el flujo operativo que rigen la solución propuesta:
+
+### Módulos
+
+* **Gestión de Inventario:** Con
+* **Control de Rentas y Reservaciones:** Registro 
+* **Agenda y Calendario:** Visualización interactoria
+* **Gestión de Incidencias y Daños:** Reportes
+
+### Tipos de usuarios
+
+* **Usuario administrador:**
+* **Usuario empleado:** 
+
+## Arquitectura y Tecnologías
+
+* **Frontend:** HTML5, CSS3, JavaScript
+* **Backend:** Java
+* **Base de Datos:** MySQL
+* **Diseño y Diagramación:** Astah UML, Mermaid.js
+* **Arquitectura utilizada:** Arquitectura hexagonal
+
+## Integrantes del Equipo
+* **Juan Jose Vargas Arvizu** 
+* **Miguel Angel Gutierrez Lopez** 
+
+## Estructura del Repositorio
