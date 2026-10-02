@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="assets/LogoEmpresa" alt="Logo de la Empresa" width="180"/>
+  <img src="Documentacion/Assets/LogoEmpresa.jpg" alt="Logo de la Empresa" width="180"/>
 
 # Propuesta de Solución Tecnológica para [Promotora+Eventos]
 
