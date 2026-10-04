@@ -21,10 +21,11 @@ Esta sección describe las reglas y el flujo operativo que rigen la solución pr
 
 ### Módulos
 
-* **Gestión de Inventario:** Con
-* **Control de Rentas y Reservaciones:** Registro 
-* **Agenda y Calendario:** Visualización interactoria
-* **Gestión de Incidencias y Daños:** Reportes
+* **Gestión de Inventario:** Permitira a los usuarios manejar y visualizar los bienes de renta en los almacenes del negocio. Contando con funcionalidades para el aumento o reduccion del almacen, asi como la condicion del mismo
+* **Control de Rentas y Reservaciones:** Permite ingresar al sistema las rentas del negocio, asi como su modificacion futura, sirviendo como un metodo rapido para tomar las rentas de los clientes y formatearlas correctamente
+* **Agenda y Calendario:** Otorga al usuario una visualizacion de las rentas y reservas en un formato de calendario, facil de entender y usar 
+* **Gestión de Incidencias y Daños:** Otorga al usuario un enfoque centrado en los bienes dañados, permitiendo reportar bienes como dañados, o marcandolos como funcionales nuevamente
+* **Reportes Mensuales:** Creara un reporte mensual de las rentas tomadas, canceladas y finalizadas durante el mes, asi como las reducciones o aumento del inventario, daños o reparacion de bienes
 
 ### Tipos de usuarios
 
@@ -37,7 +38,7 @@ Esta sección describe las reglas y el flujo operativo que rigen la solución pr
 * **Backend:** Java
 * **Base de Datos:** MySQL
 * **Diseño y Diagramación:** Astah UML, Mermaid.js
-* **Arquitectura utilizada:** Arquitectura hexagonal
+* **Framework utilizado:** SpringBoot con una arquitectura hexagonal
 
 ## Integrantes del Equipo
 * **Juan Jose Vargas Arvizu** 
