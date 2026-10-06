@@ -16,7 +16,7 @@ Como equipo de trabajo de la asignatura construcción de software, se colaboró 
 ## Objetivo del Proyecto
 Desarrollar e implementar una aplicación web simple e intuitiva que permita a los usuarios interactuar a través de módulos con el flujo de trabajo, automatizando los procesos manuales y tareas repetitivas para mejorar la productividad de la empresa y la comunicación entre los empleados y el dueño
 
-## 🏢 Lógica de Negocio
+## Lógica de Negocio
 Esta sección describe las reglas y el flujo operativo que rigen la solución propuesta:
 
 ### Módulos
