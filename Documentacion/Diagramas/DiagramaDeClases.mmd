@@ -12,12 +12,15 @@ classDiagram
 
 
     class Usuario{
+        - m_nombre : String
+        - m_contraseña : String
         + IniciarSesion() void
         + RegistrarNuevoModelo(modeloBienDeAlquiler) void
         + ObtenerModeloBienDeAlquiler(modelo : ModeloBienDeAlquiler) ModeloBienDeAlquiler
-        + ObtenerBienPorFolio(folio : String) BienDeAlquiler
+        + CrearRenta(renta : Renta) Renta
         + ObtenerRenta(renta : Renta) Renta
         + CrearPlantilla( modelos : List ModeloBienDeAlquiler) void
+        + CrearReporteDaños(reporte : ReporteDaños) void
         + ObtenerReporteDaños(reporte : ReporteDaños) ReporteDaños
     }
 
@@ -30,6 +33,10 @@ classDiagram
         - m_nombre : String
         - m_categoria : enum
         - m_bienes : ArrayList BienDeAlquiler
+        + IngresarBienes(cantidad : int) int
+        + RestarBienes(cantidad : int) int
+        + RestarBienPorFolio(folio : String) void
+        + ObtenerBienPorFolio(folio : String) BienDeAlquiler
     }
 
 
