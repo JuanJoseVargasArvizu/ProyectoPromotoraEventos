@@ -22,6 +22,7 @@ classDiagram
         + CrearPlantilla( modelos : List ModeloBienDeAlquiler) void
         + CrearReporteDaños(reporte : ReporteDaños) void
         + ObtenerReporteDaños(reporte : ReporteDaños) ReporteDaños
+        + ObtenerPDFRentasPorFecha(fecha : Fecha) PDF
     }
 
     class Administrador{
@@ -37,12 +38,23 @@ classDiagram
         + RestarBienes(cantidad : int) int
         + RestarBienPorFolio(folio : String) void
         + ObtenerBienPorFolio(folio : String) BienDeAlquiler
+        + ObtenerListaBienes() ArrayList BienDeAlquiler
+
+        + ObtenerNombre() String
+        + EstablecerNombre(nombre : String) void
+        + ObtenerCategoria() enum
+        + EstablecerCategoria(categoria : enum) enum
+
     }
 
 
     class BienDeAlquiler{
         - m_folio : String
         - m_estado : enum
+
+        + EstablecerEstado(estado : enum) void
+        + getters()
+
     }
 
 
@@ -51,13 +63,20 @@ classDiagram
         - m_bienesRentados : ArrayList BienDeAlquiler
         - m_horaMontaje : Hora
         - m_horaDesmontaje : Hora
+
+        + setters()
+        + getters()
+
     }
 
     class Evento{
         - m_nombreEvento : String
         - m_direccion : Direccion        
         - m_inicioFechaYHora : FechaYHora
-        - m_finalFechaYHora : FechaYHora        
+        - m_finalFechaYHora : FechaYHora
+
+        + getters()
+        + setters()
     }
 
     class ReporteDaños{
@@ -66,9 +85,16 @@ classDiagram
         - m_descripcionDaño : String
         - m_prioridad : enum
         - m_renta : Renta
+
+        + EstablecerDescripcion(descripcion : String) void
+        + EstablecerPrioridad(prioridad : enum) void
+        + getters()
     }
 
 
     class Plantilla{
-        - m_bienesDeAlquiler : ArrayList BienDeAlquiler
+        - m_modelosBienDeAlquiler : ArrayList ModeloBienDeAlquiler
+        + ObtenerModelos() ArrayList ModeloBienDeAlquiler
+        + AgregarModelo(modelo : ModeloBienDeAlquiler) void
+        + EliminarModelo(modelo : ModeloBienDeAlquiler) void
     }
