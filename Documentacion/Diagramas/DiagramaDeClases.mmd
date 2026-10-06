@@ -1,130 +1,67 @@
 classDiagram
 
-BienDeAlquiler -- ReporteInventario
-BienDeAlquiler -- CompraDeBienes
-BienDeAlquiler -- Renta
-Renta -- ReporteRentas
-Renta -- Cliente
-Renta -- Fecha
-Renta -- Direccion
-ReporteInventario -- CompraDeBienes
-ReporteMensualNegocio -- ReporteInventario
-ReporteMensualNegocio -- ReporteRentas
-ReporteMensualNegocio -- Fecha
-Usuario <-- Administrador :Hereda
+    Usuario <-- Administrador : Hereda de
+    Usuario -- BienDeAlquiler
+    Usuario -- Renta
+    Usuario -- ReporteDaños
+    Usuario -- Plantilla
+
+    Renta -- Evento
+
+    ModeloBienDeAlquiler -- BienDeAlquiler
 
 
-class BienDeAlquiler{
-    - m_folio : int   
-    - m_nombre : String
-    - m_categoria : String
-    - m_precio : double
-    - m_cantidadDisponible : int
-    - m_cantidadEnMantenimiento : int
-    - m_cantidadRentada : int
+    class Usuario{
+        + IniciarSesion() void
+        + RegistrarNuevoModelo(modeloBienDeAlquiler) void
+        + ObtenerModeloBienDeAlquiler(modelo : ModeloBienDeAlquiler) ModeloBienDeAlquiler
+        + ObtenerBienPorFolio(folio : String) BienDeAlquiler
+        + ObtenerRenta(renta : Renta) Renta
+        + CrearPlantilla( modelos : List ModeloBienDeAlquiler) void
+        + ObtenerReporteDaños(reporte : ReporteDaños) ReporteDaños
+    }
 
-    + ObtenerFolio() int
-    + ObtenerNombre() String
-    + ObtenerPrecio() double
-    + ObtenerCategoria() String
-    + ObtenerCantidadDisponible() int
-    + ObtenerCantidadEnMantenimiento() int
-    + ObtenerCantidadRentada() int
-    + RestarAlmacen(cantidad : int) void
-    + AumentarAlmacen(cantidad : int) void
-}
+    class Administrador{
+        + CrearNuevoUsuario(usuario : Usuario) void
+        + EliminarUsuario(usuario : Usuario) void
+    }
 
-class CompraDeBienes{
-    - m_bienComprado : BienDeAlquiler
-    - m_cantidad : int
-    - m_costo : double
-    - m_fecha : Fecha
-    + ObtenerFecha() Fecha
-    + ObtenerBienComprado() BienDeAlquiler 
-    + ObtenerCantidad() int
-    + ObtenerCosto() double
-}
+    class ModeloBienDeAlquiler{
+        - m_nombre : String
+        - m_categoria : enum
+        - m_bienes : ArrayList BienDeAlquiler
+    }
 
-class ReporteMensualNegocio{
-    - m_fecha : Fecha
-    - m_reporteInventario : ReporteInventario
-    - m_reporteRentas : ReporteRentas
-    + ObtenerFecha() Fecha
-    + ObtenerReporteInventario() ReporteInventario
-    + ObtenerReporteRentas() ArrayList ReporteRentas
-    + ObtenerPDF() PDF
-    - ConvertirAPDF() PDF
 
-}
+    class BienDeAlquiler{
+        - m_folio : String
+        - m_estado : enum
+    }
 
-class ReporteInventario{
-    - m_comprasDeBienes : ArrayList CompraDeBienes
-    - m_estadoInventario : ArrayList BienDeAlquiler
-    + ObtenerEstado() ArrayList BienDeAlquiler
-    + ObtenerCompras() ArrayList CompraDeBienes
-}
 
-class ReporteRentas{
-    - m_rentas : ArrayList Renta
-    + ObtenerRentas() ArrayList Renta
-}
+    class Renta{
+        - m_evento : Evento
+        - m_bienesRentados : ArrayList BienDeAlquiler
+        - m_horaMontaje : Hora
+        - m_horaDesmontaje : Hora
+    }
 
-class Renta{
-    - m_bienesRentados : ArrayList BienDeAlquiler
-    - m_fecha : Fecha
-    - m_direccion : Direccion
-    - m_cliente : Cliente
-    + ObtenerBienesRentados() ArrayList BienDeAlquiler
-    + ObtenerFecha() Fecha
-    + ObtenerDireccion() Direccion
-    + ObtenerCliente() Cliente
-}
+    class Evento{
+        - m_nombreEvento : String
+        - m_direccion : Direccion        
+        - m_inicioFechaYHora : FechaYHora
+        - m_finalFechaYHora : FechaYHora        
+    }
 
-class Cliente{
-    - m_nombre : String
-    - m_contacto : Telf
-    + ObtenerNombre() String
-    + ObtenerContacto() Telf
-}
+    class ReporteDaños{
+        - m_fecha : Fecha
+        - m_bienDeAlquiler : BienDeAlquiler
+        - m_descripcionDaño : String
+        - m_prioridad : enum
+        - m_renta : Renta
+    }
 
-class Fecha{
-    - m_dia : int
-    - m_mes : int
-    - m_año : int
-    + ObtenerDia() int
-    + ObtenerMes() int
-    + ObtenerAño() int
-}
 
-class Direccion{
-    - m_calle : String
-    - m_colonia : String
-    - m_numeroInterio : int
-    - m_numeroExterior: int
-    - m_codigoPostal : int
-    - m_referencias : String
-    + ObtenerCalle() String
-    + ObtenerColonio() String
-    + ObtenerNumeroExterior() int
-    + ObtenerNumeroInterior() int
-    + ObtenerCodigoPostal() int
-    + ObtenerReferencias() String
-}
-
-class Usuario {
-    - m_nombreUsuario : String
-    - m_contraseña : String
-    - m_rol : String
-    + IniciarSesion() bool
-    + CerrarSesion() void
-    + ConsultarInventario() ArrayList BienDeAlquiler
-    + ConsultarAgenda() ArrayList Rentas
-    + CrearRenta(rentaNueva : Renta) void
-    + EditarRenta(renta : Renta) void
-}
-
-class Administrador {
-    + AgregarBienDeAlquiler(nuevoBien : BienDeAlquiler) void
-    + EliminarBienDeAlquiler(bienEliminado : BienDeAlquiler) void
-    + EditarBienDeAlquiler(bienEditado : BienDeAlquiler) void
-}
+    class Plantilla{
+        - m_bienesDeAlquiler : ArrayList BienDeAlquiler
+    }
