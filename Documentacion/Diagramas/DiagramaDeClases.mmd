@@ -3,6 +3,7 @@ classDiagram
 Servicio --> HorariosServicio : Integra
 Servicio <-- ServicioPorConfirmar : Hereda De
 Servicio <-- ServicioConfirmado : Hereda De
+Servicio <-- ServicioFinalizado : Hereda De
 ServicioConfirmado --> Elemento : Contiene
 Plantilla --> Elemento : Contiene
 Servicio --> Cliente : Contiene
@@ -20,6 +21,8 @@ class Plantilla{
     + AgregarProducto(String nombreModelo) void
     + EliminarProducto(String nombreModelo) void
     + setNombrePlantilla(String nombre) void
+    + getNombrePlantilla() String
+    + getNombresModelos() String
 }
 
 class Elemento{
@@ -55,7 +58,7 @@ class Cliente{
 class ReporteDaños{
     - m_descripcionDaños : String
     - m_folioProducto : String
-    - m_eventoDelDaño : String
+    - m_NombreeventoDelDaño : String
     + setDescripicion(String descripcion) void
     + setFolioProducto(String folio) void
     + setEventoDelDaño(String nombreEvento) void
@@ -71,6 +74,7 @@ class Servicio{
     - m_direccion : String
     - m_horarios : HorariosServicio
     - m_descuentoEnDecimales : double
+    - m_ProductosPrestados : List Elemento
     - m_costoOperativo : double
     - m_costosExtra : List Double
     - m_personalContratado : List String
@@ -82,13 +86,8 @@ class Servicio{
     + getDescuentoEnDecimales() double
     + getCostoOperativo() double
     + getCostosExtra() List double
-    + getPersonalContratado() List String 
-}
-
-
-class ServicioPorConfirmar{
-    - m_foliosProductosPrestados : List String
-    + getFoliosProductosPrestados() List String
+    + getPersonalContratado() List String
+    + getProductosPrestados() List Elemento 
     + setNombreCliente(String nombre) void
     + setNombreEvento(String nombre) void
     + setDireccion(String direccion) void
@@ -98,15 +97,21 @@ class ServicioPorConfirmar{
     + AgregarVehiculo(String matricula) void
     + EliminarVehiculo(String matricula) void
     + EliminarPersonaContrada(String trabajo) void
-    + AgregarFolioDeElemento(String folio) void
-    + EliminarFolioDeElemento(String folio) void
+    + AgregarElemento(String folio) void
+    + EliminarElemento(String folio) void
+}
+
+
+class ServicioPorConfirmar{  
+
 }
 
 class ServicioConfirmado{
-    - m_finalizado : boolean
-    - m_productosPrestados : List Elemento
-    + getProductosPrestados() List Elemento
-    + EstablecerComoFinalizado() void
+
+}
+
+class ServicioFinalizado{
+    
 }
 
 class HorariosServicio{
