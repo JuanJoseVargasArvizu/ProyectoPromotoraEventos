@@ -32,6 +32,7 @@ class Elemento{
     - m_categoria : String
     - m_descripcion : String
     - m_estado : String
+    - m_costoPorDia : double
     + getFolio() String
     + getModelo() String
     + getCategoria() String
@@ -62,6 +63,7 @@ class ReporteInventario{
 
     + getElementos() List Elemento
     + getFecha() LocalDate
+    + GenerarPDF() PDF
 }
 
 class ReporteServicios{
@@ -69,6 +71,7 @@ class ReporteServicios{
     - m_servicios : List ServicioFinalizado
     + getFecha() LocalDate
     + getSerivicios() List ServicioFinalizado
+    + GenerarPDF() PDF
 }
 
 class ReporteDaños{
@@ -83,6 +86,7 @@ class ReporteDaños{
     + getDescripcion() String
     + getFolio() String
     + getNombreEvento() String
+    + GenerarPDF() PDF
 }
 
 class Servicio{
@@ -111,6 +115,7 @@ class Servicio{
     + getProductosPrestados() List Elemento 
     + ObtenerGanancia() double
     + ObtenerIngresoBruto() double
+    + GenerarPDF() PDF
 
     + setNombreCliente(String nombre) void
     + setNombreEvento(String nombre) void
