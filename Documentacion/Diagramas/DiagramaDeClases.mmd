@@ -3,13 +3,23 @@ classDiagram
 Servicio --> HorariosServicio : Integra
 Servicio <-- ServicioPorConfirmar : Hereda De
 Servicio <-- ServicioConfirmado : Hereda De
-ServicioConfirmado -- Elemento : Contiene
+ServicioConfirmado --> Elemento : Contiene
+Plantilla --> Elemento : Contiene
+Servicio --> Cliente : Contiene
 
 class Usuario{
     - m_nombre : String
     - m_contraseña : String
     - IniciarSesion() void
     - CerrarSesion() void
+}
+
+class Plantilla{
+    - m_nombrePlantilla : String
+    - m_productosPorNombreDeModelo : List String
+    + AgregarProducto(String nombreModelo) void
+    + EliminarProducto(String nombreModelo) void
+    + setNombrePlantilla(String nombre) void
 }
 
 class Elemento{
@@ -40,6 +50,18 @@ class Cliente{
     + setContacto(contacto : String) void
     + setTipo(categoria : String) void
     + setDescuento(descuento :  double) void
+}
+
+class ReporteDaños{
+    - m_descripcionDaños : String
+    - m_folioProducto : String
+    - m_eventoDelDaño : String
+    + setDescripicion(String descripcion) void
+    + setFolioProducto(String folio) void
+    + setEventoDelDaño(String nombreEvento) void
+    + getDescripcion() String
+    + getFolio() String
+    + getNombreEvento() String
 }
 
 class Servicio{
