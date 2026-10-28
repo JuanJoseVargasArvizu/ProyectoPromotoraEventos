@@ -1,101 +1,75 @@
 classDiagram
 
-    Usuario <-- Administrador : Hereda de
-    Usuario -- BienDeAlquiler
-    Usuario -- Renta
-    Usuario -- ReporteDaños
-    Usuario -- Plantilla
+Servicio --> HorariosServicio : Integra
 
-    Renta -- Evento
+class Usuario{
+    - m_nombre : String
+    - m_contraseña : String
+    - IniciarSesion() void
+    - CerrarSesion() void
+}
 
-    ModeloBienDeAlquiler -- BienDeAlquiler
+class Elemento{
+    - m_folio : String
+    - m_modelo : String
+    - m_categoria : String
+    - m_descripcion : String
+    - m_estado : String
+    + getFolio() String
+    + getModelo() String
+    + getCategoria() String
+    + getDescripcion() String
+    + setModelo(modelo : String) void
+    + setCategoria(categoria : String) void
+    + setDescripcion(descripcion : String) void
+}
 
+class Cliente{
+    - m_nombre : String
+    - m_contacto : String
+    - m_tipo : String
+    - m_descuento : double
+    + getNombre() String
+    + getContacto() : String
+    + getTipo() : String
+    + getDescuentoEnDecimales() double
+    + setNombre(nombre : String) void
+    + setContacto(contacto : String) void
+    + setTipo(categoria : String) void
+    + setDescuento(descuento :  double) void
+}
 
-    class Usuario{
-        - m_nombre : String
-        - m_contraseña : String
-        + IniciarSesion() void
-        + RegistrarNuevoModelo(modeloBienDeAlquiler) void
-        + ObtenerModeloBienDeAlquiler(modelo : ModeloBienDeAlquiler) ModeloBienDeAlquiler
-        + CrearRenta(renta : Renta) Renta
-        + ObtenerRenta(renta : Renta) Renta
-        + CrearPlantilla( modelos : List ModeloBienDeAlquiler) void
-        + CrearReporteDaños(reporte : ReporteDaños) void
-        + ObtenerReporteDaños(reporte : ReporteDaños) ReporteDaños
-        + ObtenerPDFRentasPorFecha(fecha : Fecha) PDF
-    }
+class Servicio{
+    - m_estado : String
+    - m_nombreCliente : String 
+    - m_evento : String
+    - m_direccion : String
+    - m_horarios : HorariosServicio
+    - m_descuentoEnDecimales : double
+    - m_foliosProductosPrestados : List String
+    - m_costoOperativo : double
+    - m_costosExtra : List Double
+    + getNombreCliente() String
+    + getNombreEvento() String
+    + getDireccion() String
+    + getHorarios() HorariosServicio
+    + getDescuentoEnDecimales() double
+    + getFoliosProductosPrestados() List String
+    + getCostoOperativo() : double
+    + getCostosExtra() : List double
+}
 
-    class Administrador{
-        + CrearNuevoUsuario(usuario : Usuario) void
-        + EliminarUsuario(usuario : Usuario) void
-    }
-
-    class ModeloBienDeAlquiler{
-        - m_nombre : String
-        - m_categoria : enum
-        - m_bienes : ArrayList BienDeAlquiler
-        + IngresarBienes(cantidad : int) int
-        + RestarBienes(cantidad : int) int
-        + RestarBienPorFolio(folio : String) void
-        + ObtenerBienPorFolio(folio : String) BienDeAlquiler
-        + ObtenerListaBienes() ArrayList BienDeAlquiler
-
-        + ObtenerNombre() String
-        + EstablecerNombre(nombre : String) void
-        + ObtenerCategoria() enum
-        + EstablecerCategoria(categoria : enum) enum
-
-    }
-
-
-    class BienDeAlquiler{
-        - m_folio : String
-        - m_estado : enum
-
-        + EstablecerEstado(estado : enum) void
-        + getters()
-
-    }
-
-
-    class Renta{
-        - m_evento : Evento
-        - m_bienesRentados : ArrayList BienDeAlquiler
-        - m_horaMontaje : Hora
-        - m_horaDesmontaje : Hora
-        - m_cliente : Cliente
-
-        + setters()
-        + getters()
-
-    }
-
-    class Evento{
-        - m_nombreEvento : String
-        - m_direccion : Direccion        
-        - m_inicioFechaYHora : FechaYHora
-        - m_finalFechaYHora : FechaYHora
-
-        + getters()
-        + setters()
-    }
-
-    class ReporteDaños{
-        - m_fecha : Fecha
-        - m_bienDeAlquiler : BienDeAlquiler
-        - m_descripcionDaño : String
-        - m_prioridad : enum
-        - m_renta : Renta
-
-        + EstablecerDescripcion(descripcion : String) void
-        + EstablecerPrioridad(prioridad : enum) void
-        + getters()
-    }
-
-
-    class Plantilla{
-        - m_modelosBienDeAlquiler : ArrayList ModeloBienDeAlquiler
-        + ObtenerModelos() ArrayList ModeloBienDeAlquiler
-        + AgregarModelo(modelo : ModeloBienDeAlquiler) void
-        + EliminarModelo(modelo : ModeloBienDeAlquiler) void
-    }
+class HorariosServicio{
+    - m_inicioEvento : LocalDateTime
+    - m_finalEventp : LocalDateTime
+    - m_montaje : LocalDateTime
+    - m_desmontaje : LocalDateTime
+    + getInicioEvento() LocalDateTime
+    + getFinalEvento() LocalDateTime
+    + getMontaje() LocalDateTime
+    + getDesmontaje() LocalDateTIme
+    + setInicioEvento(inicio : LocalDateTime) void
+    + setFinalEvento(final : LocalDateTime) void
+    + setMontaje(montaje : LocalDateTime) void
+    + setDesmontaje(desmontaje : LocalDateTime) void
+}
