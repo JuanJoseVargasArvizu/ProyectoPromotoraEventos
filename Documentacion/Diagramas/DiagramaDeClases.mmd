@@ -4,13 +4,14 @@ Servicio --> HorariosServicio : Integra
 Servicio <-- ServicioPorConfirmar : Hereda De
 Servicio <-- ServicioConfirmado : Hereda De
 Servicio <-- ServicioFinalizado : Hereda De
-ServicioConfirmado --> Elemento : Contiene
+Servicio --> Elemento : Contiene
 Plantilla --> Elemento : Contiene
 Servicio --> Cliente : Contiene
 
 class Usuario{
     - m_nombre : String
     - m_contraseña : String
+    - m_rol : String
     - IniciarSesion() void
     - CerrarSesion() void
 }
@@ -55,10 +56,27 @@ class Cliente{
     + setDescuento(descuento :  double) void
 }
 
+class ReporteInventario{
+    - m_fecha : LocalDate
+    - m_elementos : List Elemento
+
+    + getElementos() List Elemento
+    + getFecha() LocalDate
+}
+
+class ReporteServicios{
+    - m_fecha : LocalDate
+    - m_servicios : List ServicioFinalizado
+    + getFecha() LocalDate
+    + getSerivicios() List ServicioFinalizado
+}
+
 class ReporteDaños{
+    - m_fecha : Fecha
+    - m_resuelto : boolean
     - m_descripcionDaños : String
     - m_folioProducto : String
-    - m_NombreeventoDelDaño : String
+    - m_NombreEventoDelDaño : String
     + setDescripicion(String descripcion) void
     + setFolioProducto(String folio) void
     + setEventoDelDaño(String nombreEvento) void
@@ -82,7 +100,10 @@ class Servicio{
     + getNombreCliente() String
     + getNombreEvento() String
     + getDireccion() String
-    + getHorarios() HorariosServicio
+    + getFechaYHoraEvento() LocalDateTime
+    + getFechaYHoraFinalizacionEvento() LocalDateTime
+    + getHoraMontaje() LocalDateTime
+    + getHoraDesmontaje() LocalDateTime
     + getDescuentoEnDecimales() double
     + getCostoOperativo() double
     + getCostosExtra() List double
