@@ -5,7 +5,16 @@ Clase Usuario: La clase usuario representa un Usuario el cual no hace mas que in
 
 Elemento: La clase elemento representa un producto para la prestacion como parte de una renta, por lo tanto tiene los datos del producto y el costo que tiene al ser rentado. Su interfaz simplementa esta para poder consultar sus datos y cambiarlos en caso de ser necesario, puesto que un producto no realiza acciones
 
+Cliente: El cliente no es un usuario, se trata de el registro de la informacion de un cliente, el registro esta para ser consultado por los usuarios y ser alterado segun sea necesario agregar o cambiar informacion
+
+Plantilla: La plantilla se trata de una lista de productos que suelen ser rentados en conjunto, no tiene comportamientos mas alla de permitir ser consultada para ahorrar trabajo a la hora de registrar los productos requeridos para una renta
+
 ¿Las clases tienen un proposito central?
+Usuario: Sirve para permitir a un usuario acceder al sistema con un nombre y contraseña, ademas de comunicar su rol dentro del negocio
+
+Cliente: Esta para funcionar como un registro de los datos de un cliente, de esta forma pudiendo acceder a ellos en el futuro
+
+Elemento: 
 
 ¿La el nombre de la clase describe su proposito central?
 
