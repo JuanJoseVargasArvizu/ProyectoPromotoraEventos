@@ -112,6 +112,8 @@ class GeneradorPDF{
 class DatosEvento{
     - m_evento : String
     - m_direccion : String
+    + getNombre() String
+    + getDireccion() String
 }
 
 class Costos{
@@ -119,6 +121,20 @@ class Costos{
     - m_matriculasVehiculosAUsar : List String
     - m_costosExtra : List Double
     - m_ProductosPrestados : List Elemento
+    - m_descuentoEnDecimales : double
+    - m_costoOperativo : double
+
+    + ObtenerCostoTotal() double
+    + ObtenerCostoOperativos() double
+    + ObtenerCostoTotalConDescuento() double
+    + ObtenerCostoPorProductosPrestados() double
+
+    + getPersonalContratado() List String
+    + getMatriculasVehiculos() List String
+    + getCostosExtra : List double
+    + getProductosPrestados() List Elemento
+    + getDescuentoEnDecimales() double
+    + getCostoOperativo() double
 }
 
 class Servicio{
@@ -126,7 +142,6 @@ class Servicio{
     - m_nombreCliente : String
     - m_datosDelEvento : DatosEvento 
     - m_horarios : HorariosServicio
-    - m_descuentoEnDecimales : double
     - m_costos : Costos
     
     
@@ -157,7 +172,6 @@ class Servicio{
     + EliminarPersonaContrada(String trabajo) void
     + AgregarElemento(String folio) void
     + EliminarElemento(String folio) void
-
     + FinalizarServicio() void
 }
 
@@ -166,6 +180,10 @@ class RegistroServicioFinalizado{
     - m_datosDelEvento : DatosEvento 
     - m_descuentoEnDecimales : double
     - m_costos : Costos
+    + getNombreCliente() String
+    + getDatosDelEcento() DatosEvento
+    + getDescuentoEnDecimales() double
+    + getCostos() Costos
 }
 
 class Vehiculo{
