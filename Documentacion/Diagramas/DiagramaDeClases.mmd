@@ -1,12 +1,15 @@
 classDiagram
 
 Servicio --> HorariosServicio : Integra
-Servicio <-- ServicioPorConfirmar : Hereda De
-Servicio <-- ServicioConfirmado : Hereda De
-Servicio <-- ServicioFinalizado : Hereda De
-Servicio --> Elemento : Contiene
+Servicio --> DatosEvento : Integra
+Servicio --> Costos : Integra
+Costos --> Elemento : Contiene
 Plantilla --> Elemento : Contiene
-Servicio --> Cliente : Contiene
+ReporteMensualDeDaños --> RegistroDeDaños : Contiene
+ReporteMensualServicios --> RegistroServicioFinalizado : Contiene
+ReporteMensualInventario --> Elemento : Contiene
+RegistroServicioFinalizado --> DatosEvento : Integra
+RegistroServicioFinalizado --> Costos : Integra
 
 class Usuario{
     - m_nombre : String
@@ -72,20 +75,20 @@ class ReporteMensualInventario{
 
 class ReporteMensualServicios{
     - m_fecha : LocalDate
-    - m_servicios : List ServicioFinalizado
+    - m_servicios : List RegistroSevicioFinalizado
     + getFecha() LocalDate
-    + getSerivicios() List ServicioFinalizado
+    + getSerivicios() List RegistroSevicioFinalizado
 }
 
 class ReporteMensualDeDaños{
     - m_fecha : LocalDate
-    - m_reportes : List ReporteDeDaños
+    - m_reportes : List RegistroDeDaños
     + getFecha() LocalDate
     + getServiciosReportes() List ReporteDaños
 }
 
 
-class ReporteDeDaños{
+class RegistroDeDaños{
     - m_fecha : Fecha
     - m_resuelto : boolean
     - m_descripcionDaños : String
@@ -106,24 +109,26 @@ class GeneradorPDF{
     + GenerarPDFReporteMensualDaños(reporte : ReporteMensualDaños) PDF
 }
 
-class ElementosOperativos{
-    - m_personalContratado : List String
-    - m_matriculasVehiculosAUsar : List String
-}
-
 class DatosEvento{
     - m_evento : String
     - m_direccion : String
 }
 
+class Costos{
+    - m_personalContratado : List String
+    - m_matriculasVehiculosAUsar : List String
+    - m_costosExtra : List Double
+    - m_ProductosPrestados : List Elemento
+}
+
 class Servicio{
-    <<Abstracta>>
-    - m_nombreCliente : String 
+    - m_confirmada : boolean
+    - m_nombreCliente : String
+    - m_datosDelEvento : DatosEvento 
     - m_horarios : HorariosServicio
     - m_descuentoEnDecimales : double
-    - m_ProductosPrestados : List Elemento
-    - m_costoOperativo : double
-    - m_costosExtra : List Double
+    - m_costos : Costos
+    
     
     + getNombreCliente() String
     + getNombreEvento() String
@@ -152,19 +157,15 @@ class Servicio{
     + EliminarPersonaContrada(String trabajo) void
     + AgregarElemento(String folio) void
     + EliminarElemento(String folio) void
+
+    + FinalizarServicio() void
 }
 
-
-class ServicioPorConfirmar{  
-
-}
-
-class ServicioConfirmado{
-
-}
-
-class ServicioFinalizado{
-
+class RegistroServicioFinalizado{
+    - m_nombreCliente : String
+    - m_datosDelEvento : DatosEvento 
+    - m_descuentoEnDecimales : double
+    - m_costos : Costos
 }
 
 class Vehiculo{
