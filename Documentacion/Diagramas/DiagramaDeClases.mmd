@@ -62,24 +62,30 @@ class Cliente{
     + setDescuento(descuento :  double) void
 }
 
-class ReporteInventario{
+class ReporteMensualInventario{
     - m_fecha : LocalDate
     - m_elementos : List Elemento
 
     + getElementos() List Elemento
     + getFecha() LocalDate
-    + GenerarPDF() PDF
 }
 
-class ReporteServicios{
+class ReporteMensualServicios{
     - m_fecha : LocalDate
     - m_servicios : List ServicioFinalizado
     + getFecha() LocalDate
     + getSerivicios() List ServicioFinalizado
-    + GenerarPDF() PDF
 }
 
-class ReporteDaños{
+class ReporteMensualDeDaños{
+    - m_fecha : LocalDate
+    - m_reportes : List ReporteDeDaños
+    + getFecha() LocalDate
+    + getServiciosReportes() List ReporteDaños
+}
+
+
+class ReporteDeDaños{
     - m_fecha : Fecha
     - m_resuelto : boolean
     - m_descripcionDaños : String
@@ -91,21 +97,34 @@ class ReporteDaños{
     + getDescripcion() String
     + getFolio() String
     + getNombreEvento() String
-    + GenerarPDF() PDF
+}
+
+class GeneradorPDF{
+    + GenerarPDFServicio(servicio : Servicio) PDF
+    + GenerarPDFReporteMensualServicios(reporte : ReporteMensualServicios) PDF
+    + GenerarPDFReporteMensualInventario(reporte : ReporteMensualInventario) PDF
+    + GenerarPDFReporteMensualDaños(reporte : ReporteMensualDaños) PDF
+}
+
+class ElementosOperativos{
+    - m_personalContratado : List String
+    - m_matriculasVehiculosAUsar : List String
+}
+
+class DatosEvento{
+    - m_evento : String
+    - m_direccion : String
 }
 
 class Servicio{
     <<Abstracta>>
     - m_nombreCliente : String 
-    - m_evento : String
-    - m_direccion : String
     - m_horarios : HorariosServicio
     - m_descuentoEnDecimales : double
     - m_ProductosPrestados : List Elemento
     - m_costoOperativo : double
     - m_costosExtra : List Double
-    - m_personalContratado : List String
-    - m_matriculasVehiculosAUsar : List String
+    
     + getNombreCliente() String
     + getNombreEvento() String
     + getDireccion() String
@@ -121,7 +140,6 @@ class Servicio{
     + getVehiculosUsados() List String
     + ObtenerGanancia() double
     + ObtenerIngresoBruto() double
-    + GenerarPDF() PDF
 
     + setNombreCliente(String nombre) void
     + setNombreEvento(String nombre) void
@@ -147,6 +165,14 @@ class ServicioConfirmado{
 
 class ServicioFinalizado{
 
+}
+
+class Vehiculo{
+    - m_matricula : String
+    - m_expiracionSeguro : LocalDate
+    + getExpiracionSegiro() LocalDate
+    + getMatricula() String
+    + setExpiracionSeguro(fecha : LocalDate) void
 }
 
 class HorariosServicio{
