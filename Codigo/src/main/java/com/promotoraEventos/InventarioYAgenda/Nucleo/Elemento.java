@@ -1,23 +1,47 @@
 package com.promotoraEventos.InventarioYAgenda.Nucleo;
 
 public class Elemento {
+
+    enum EstadoElemento{
+        DISPONIBLE, 
+        MANTENIMIENTO, 
+        OCUPADO
+    }
+
+    enum CategoriaElemento{
+        MOBILIARIO,
+        LUCES,
+        COOLERS,
+        SONIDO
+    }
+
     private String m_folio;
     private String m_modelo;
-    private String m_categoria;
+    private CategoriaElemento m_categoria;
     private String m_descripcion;
-    private String m_estado;
+    private EstadoElemento m_estado;
     private double m_costoPorDia;
     
+    public Elemento(String folio, String modelo, CategoriaElemento categoria,
+                    double costoPorDia){
+        
+        this.m_folio = folio;
+        this.m_modelo = modelo;
+        this.m_categoria = categoria;
+        this.m_costoPorDia = costoPorDia;
+        this.m_estado = EstadoElemento.DISPONIBLE;
+    }
+
     public void PonerEnMantenimiento(){
-        this.m_estado = "Mantenimiento";
+        this.m_estado = EstadoElemento.MANTENIMIENTO;
     }
 
     public void EstablecerComoDisponible(){
-        this.m_estado = "Disponible";
+        this.m_estado = EstadoElemento.DISPONIBLE;
     }
 
     public void EstablecerComoOcupado(){
-        this.m_estado = "Ocupado";
+        this.m_estado = EstadoElemento.OCUPADO;
     }
 
     public String getFolio() {
@@ -30,10 +54,10 @@ public class Elemento {
     public void setModelo(String modelo) {
         this.m_modelo = modelo;
     }
-    public String getCategoria() {
+    public CategoriaElemento getCategoria() {
         return m_categoria;
     }
-    public void setCategoria(String categoria) {
+    public void setCategoria(CategoriaElemento categoria) {
         this.m_categoria = categoria;
     }
     public String getDescripcion() {
