@@ -32,8 +32,37 @@ public class Elemento {
         this.m_estado = EstadoElemento.DISPONIBLE;
     }
 
+    public boolean EstaEnMantenimiento(){
+        if(m_estado == EstadoElemento.MANTENIMIENTO){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean EstaDisponible(){
+        if(m_estado == EstadoElemento.DISPONIBLE){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean EstaOcupado(){
+        if(m_estado == EstadoElemento.OCUPADO){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public void PonerEnMantenimiento(){
-        this.m_estado = EstadoElemento.MANTENIMIENTO;
+
+        if (EstaOcupado()==true) {
+            System.out.println("Esta ocupado");
+        }else{
+            this.m_estado = EstadoElemento.MANTENIMIENTO;
+        }
     }
 
     public void EstablecerComoDisponible(){
@@ -41,7 +70,11 @@ public class Elemento {
     }
 
     public void EstablecerComoOcupado(){
-        this.m_estado = EstadoElemento.OCUPADO;
+        if (EstaEnMantenimiento() == true) {
+            System.out.println("Esta en mantenimiento");
+        }else{
+            this.m_estado = EstadoElemento.OCUPADO;
+        }
     }
 
     public String getFolio() {

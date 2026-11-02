@@ -11,4 +11,13 @@ public class DatosEvento {
     public String getDireccion(){
         return m_direccion;
     }
+
+    public void setNombre(String nombre){
+        this.m_evento = nombre;
+    }
+
+    public void setDireccion(String direccion){
+        this.m_direccion = direccion;
+    }
+    
 }

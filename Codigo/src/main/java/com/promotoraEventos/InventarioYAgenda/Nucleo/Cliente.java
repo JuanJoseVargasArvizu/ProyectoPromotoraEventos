@@ -1,12 +1,19 @@
 package com.promotoraEventos.InventarioYAgenda.Nucleo;
 
 public class Cliente {
+    
+    enum ClienteTipo{
+        FISCAL,
+        PRIVADO,
+        INFORMAL
+    }
+    
     private String m_nombre;
     private String m_contacto;
-    private String m_tipo;
+    private ClienteTipo m_tipo;
     private double m_descuentoEnDecimales;
     
-    public Cliente(String nombre, String contacto, String tipo, double descuento){
+    public Cliente(String nombre, String contacto, ClienteTipo tipo, double descuento){
         this.m_nombre = nombre;
         this.m_contacto = contacto;
         this.m_tipo = tipo;
@@ -21,7 +28,7 @@ public class Cliente {
         return m_contacto;
     }
 
-    public String getTipo(){
+    public ClienteTipo getTipo(){
         return m_tipo;
     }
 
@@ -37,12 +44,7 @@ public class Cliente {
         this.m_contacto = contacto;
     }
 
-    public void setTipo(String tipo){
-        
-        if((tipo == "EmpresaPrivada") || (tipo == "Informal") || (tipo == "Fiscal")){
-            this.m_tipo = tipo;
-        }
-        
+    public void setTipo(ClienteTipo tipo){
         this.m_tipo = tipo;
     }
 
