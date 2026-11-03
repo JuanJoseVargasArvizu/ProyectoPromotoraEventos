@@ -9,6 +9,10 @@ public class RegistroDeDaños {
     private String m_folioElemento;
     private String m_nombreDelEventoDelDaño;
 
+    public boolean EstaResuelto(){
+        return m_estaResuelto;
+    }
+
     public void setDescripcion(String descripcion){
         this.m_descripcionDaños = descripcion;
     }
@@ -31,5 +35,9 @@ public class RegistroDeDaños {
 
     public String getNombreEvento(){
         return m_nombreDelEventoDelDaño;
+    }
+
+    public LocalDate getFecha(){
+        return m_fecha;
     }
 }
