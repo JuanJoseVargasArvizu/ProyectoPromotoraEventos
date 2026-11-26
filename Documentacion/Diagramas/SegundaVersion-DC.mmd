@@ -1,0 +1,101 @@
+classDiagram
+
+    Usuario <-- Administrador : Hereda de
+    Usuario -- BienDeAlquiler
+    Usuario -- Renta
+    Usuario -- ReporteDaños
+    Usuario -- Plantilla
+
+    Renta -- Evento
+
+    ModeloBienDeAlquiler -- BienDeAlquiler
+
+
+    class Usuario{
+        - m_nombre : String
+        - m_contraseña : String
+        + IniciarSesion() void
+        + RegistrarNuevoModelo(modeloBienDeAlquiler) void
+        + ObtenerModeloBienDeAlquiler(modelo : ModeloBienDeAlquiler) ModeloBienDeAlquiler
+        + CrearRenta(renta : Renta) Renta
+        + ObtenerRenta(renta : Renta) Renta
+        + CrearPlantilla( modelos : List ModeloBienDeAlquiler) void
+        + CrearReporteDaños(reporte : ReporteDaños) void
+        + ObtenerReporteDaños(reporte : ReporteDaños) ReporteDaños
+        + ObtenerPDFRentasPorFecha(fecha : Fecha) PDF
+    }
+
+    class Administrador{
+        + CrearNuevoUsuario(usuario : Usuario) void
+        + EliminarUsuario(usuario : Usuario) void
+    }
+
+    class ModeloBienDeAlquiler{
+        - m_nombre : String
+        - m_categoria : enum
+        - m_bienes : ArrayList BienDeAlquiler
+        + IngresarBienes(cantidad : int) int
+        + RestarBienes(cantidad : int) int
+        + RestarBienPorFolio(folio : String) void
+        + ObtenerBienPorFolio(folio : String) BienDeAlquiler
+        + ObtenerListaBienes() ArrayList BienDeAlquiler
+
+        + ObtenerNombre() String
+        + EstablecerNombre(nombre : String) void
+        + ObtenerCategoria() enum
+        + EstablecerCategoria(categoria : enum) enum
+
+    }
+
+
+    class BienDeAlquiler{
+        - m_folio : String
+        - m_estado : enum
+
+        + EstablecerEstado(estado : enum) void
+        + getters()
+
+    }
+
+
+    class Renta{
+        - m_evento : Evento
+        - m_bienesRentados : ArrayList BienDeAlquiler
+        - m_horaMontaje : Hora
+        - m_horaDesmontaje : Hora
+        - m_cliente : Cliente
+
+        + setters()
+        + getters()
+
+    }
+
+    class Evento{
+        - m_nombreEvento : String
+        - m_direccion : Direccion        
+        - m_inicioFechaYHora : FechaYHora
+        - m_finalFechaYHora : FechaYHora
+
+        + getters()
+        + setters()
+    }
+
+    class ReporteDaños{
+        - m_fecha : Fecha
+        - m_bienDeAlquiler : BienDeAlquiler
+        - m_descripcionDaño : String
+        - m_prioridad : enum
+        - m_renta : Renta
+
+        + EstablecerDescripcion(descripcion : String) void
+        + EstablecerPrioridad(prioridad : enum) void
+        + getters()
+    }
+
+
+    class Plantilla{
+        - m_modelosBienDeAlquiler : ArrayList ModeloBienDeAlquiler
+        + ObtenerModelos() ArrayList ModeloBienDeAlquiler
+        + AgregarModelo(modelo : ModeloBienDeAlquiler) void
+        + EliminarModelo(modelo : ModeloBienDeAlquiler) void
+    }
