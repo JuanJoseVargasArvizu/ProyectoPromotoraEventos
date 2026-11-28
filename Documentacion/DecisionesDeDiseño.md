@@ -1,0 +1,2 @@
+# Cliente
+Se decidio utilizar un codigo de tipo, puesto que este no cambia el comportamiento de la clase mas alla de si se le considera un impuesto o no, y eso es una constante. Como vimos en una refactorizacion del libro, en estos casos es mejor simplemente dejarlo con codigo de tipo

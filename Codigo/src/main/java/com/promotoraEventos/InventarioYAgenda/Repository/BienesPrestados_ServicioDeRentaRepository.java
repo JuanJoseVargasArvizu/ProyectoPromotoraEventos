@@ -1,0 +1,10 @@
+package com.promotoraEventos.InventarioYAgenda.Repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.promotoraEventos.InventarioYAgenda.Entidades.AtributosCompuestos.ID_BienesPrestados_ServicioDeRenta;
+import com.promotoraEventos.InventarioYAgenda.Entidades.BienesPrestados_ServicioDeRenta;
+
+public interface BienesPrestados_ServicioDeRentaRepository extends CrudRepository<BienesPrestados_ServicioDeRenta,ID_BienesPrestados_ServicioDeRenta> {
+    
+}
